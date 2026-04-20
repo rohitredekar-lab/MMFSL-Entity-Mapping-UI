@@ -111,9 +111,6 @@ function getBranchHierarchy(branchId) {
 // --- Rendering ---
 function renderLists() {
     if (!lists) return;
-    // Show/hide Global Unselect button
-    const unselectBtn = document.querySelector('.unselect-all-btn');
-    if (unselectBtn) unselectBtn.style.display = activeId ? 'flex' : 'none';
 
     const mappingContainer = document.querySelector('.mapping-container');
     const viewModeToggle = document.querySelector('.view-mode-toggle');
@@ -395,7 +392,7 @@ function renderLists() {
                 const userBadgeHTML = userCount > 0 ? `<div class="card-user-badge" title="${userCount} Users Assigned"><svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle></svg> ${userCount}</div>` : '';
 
                 card.innerHTML = `
-                    ${isActive ? `<button class="unselect-card-btn" title="Unselect">&times;</button>` : ''}
+
                     <div class="card-icon">${getIconSVG(type)}</div>
                     <div class="card-content">
                         <div class="card-title">${item.name}</div>
@@ -424,10 +421,6 @@ function renderLists() {
             }
 
             card.addEventListener('click', (e) => {
-                if (e.target.classList.contains('unselect-card-btn')) {
-                    handleCardClick(item.id, type);
-                    return;
-                }
                 handleCardClick(item.id, type);
             });
             card.draggable = isEditMode;
@@ -768,15 +761,6 @@ function bindEvents() {
         });
     }
 
-    const unselectBtn = document.querySelector('.unselect-all-btn');
-    if (unselectBtn) {
-        unselectBtn.onclick = () => {
-            activeId = null;
-            activeType = null;
-            document.querySelectorAll('.column-list').forEach(list => list.classList.remove('scroll-locked'));
-            renderLists();
-        };
-    }
 
     document.querySelector('.export-btn').onclick = () => { alert('Exporting dashboard data...'); };
     document.querySelector('.save-btn').onclick = () => { alert('Changes saved to local session!'); };
