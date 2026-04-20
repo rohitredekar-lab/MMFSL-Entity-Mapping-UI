@@ -818,9 +818,12 @@ function bindEvents() {
                         <div class="res-avatar">${user.name.charAt(0)}</div>
                         <div class="res-info">
                             <div class="res-name">${user.name}</div>
-                            <div class="res-meta">
-                                <span>SAP: ${user.empId}</span>
-                                <span class="res-badge">${user.designations ? user.designations[0] : 'User'}</span>
+                            <div class="res-meta" style="flex-direction: column; gap: 4px; align-items: flex-start;">
+                                <div style="display: flex; gap: 8px;">
+                                    <span>SAP: ${user.empId}</span>
+                                    <span class="res-badge">${user.designations ? user.designations[0] : 'User'}</span>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -897,9 +900,15 @@ function openGlobalUserModal(userId) {
                     <div class="user-avatar xl" style="width: 80px; height: 80px; font-size: 36px; background: #111827;">${user.name.charAt(0)}</div>
                 </div>
                 <h2 class="details-name" style="margin:15px 0 8px 0; font-size: 22px;">${user.name}</h2>
-                <div class="details-badges" style="display:flex; gap:10px;">
-                    <span class="user-meta-badge">SAP: ${user.empId}</span>
-                    <span class="user-meta-badge">${user.designations ? user.designations[0] : 'Member'}</span>
+                <div class="details-badges" style="display:flex; flex-direction:column; gap:8px; align-items:center;">
+                    <div style="display:flex; gap:10px;">
+                        <span class="user-meta-badge">SAP: ${user.empId}</span>
+                        <span class="user-meta-badge">${user.designations ? user.designations[0] : 'Member'}</span>
+                    </div>
+                    <span class="user-meta-badge" style="background: rgba(228, 24, 55, 0.05); color: var(--primary-theme); border: 1px solid rgba(228, 24, 55, 0.1);">
+                        <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        ${user.empId}@demomahindrafinance.com
+                    </span>
                 </div>
             </div>
             <div class="ticket-separator" style="position: relative; border-top: 2px dashed #e5e7eb; margin: 0;">
@@ -1067,6 +1076,7 @@ function renderRoleEditor(container, type, entityId) {
                                 <div class="user-name">${user.name}</div>
                             </div>
                             <div class="user-emp-id">${user.empId} ${isAssigned ? `<span class="active-role-tag">• Assigned</span>` : `• ${activeRole}`}</div>
+                            
                             <div class="user-card-actions" style="margin-top: 6px;">
                                 ${viewDetailsBtnHTML}
                             </div>
@@ -1123,9 +1133,15 @@ function renderRoleEditor(container, type, entityId) {
                                 <div class="user-avatar xl" style="width: 76px; height: 76px; font-size: 32px; background: #111827; border: 1px solid #f3f4f6;">${user.name.charAt(0)}</div>
                             </div>
                             <div class="details-name" style="font-size: 20px; font-weight: 700; color: #111; margin: 0 0 12px 0; letter-spacing: -0.01em;">${user.name}</div>
-                            <div class="details-badges" style="display: flex; gap: 8px; align-items: center; justify-content: center;">
-                                <span class="user-meta-badge"><svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> ${user.empId}</span>
-                                <span class="user-meta-badge"><svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> ${user.department}</span>
+                            <div class="details-badges" style="display: flex; flex-direction: column; gap: 8px; align-items: center; justify-content: center;">
+                                <div style="display: flex; gap: 8px;">
+                                    <span class="user-meta-badge"><svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> ${user.empId}</span>
+                                    <span class="user-meta-badge"><svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> ${user.department}</span>
+                                </div>
+                                <span class="user-meta-badge" style="background: rgba(228, 24, 55, 0.05); color: var(--primary-theme); border: 1px solid rgba(228, 24, 55, 0.1);">
+                                    <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                    ${user.empId}@demomahindrafinance.com
+                                </span>
                             </div>
                         </div>
 
